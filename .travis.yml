@@ -1,0 +1,10 @@
+language: generic 
+sudo: required
+services:
+    - docker
+
+before install:
+    - docker build -t tigertond/docker-react -f Dockerfile.dev .
+
+script:
+    - docker run -e CI=true tigertond/docker-react npm run test -- --coverage
